@@ -44,6 +44,9 @@ CPP_SOURCES := \
 	./net/connection.cc \
 	./net/network_options.cc \
 	./net/ip_util.cc \
+	./net/socket_util.cc \
+	./net/client.cc \
+	./net/server.cc \
 	\
 
 

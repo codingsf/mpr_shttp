@@ -6,13 +6,15 @@ namespace net {
 
 class SocketUtil {
  public:
-  static int SetNonBlocking(int fd);
+  static bool SetNonBlocking(int fd);
 
   static bool GetSendBufferSize(int fd, int& ret);
   static bool SetSendBufferSize(int fd, int size);
 
   static bool GetRecvBufferSize(int fd, int& ret);
   static bool SetRecvBufferSize(int fd, int size);
+
+  static bool SetReuseAddress(int fd);
 
   static bool SetKeepAlive(int fd);
   static bool SetKeepIdleTime(int fd, int time);

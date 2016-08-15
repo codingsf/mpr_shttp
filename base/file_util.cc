@@ -344,6 +344,18 @@ bool TouchFile(const FilePath& path,
   return file.SetTimes(last_accessed, last_modified);
 }
 
+bool SetNonBlocking(int fd) {
+  const int flags = ::fcntl(fd, F_GETFL);
+  if (flags == -1)
+    return false;
+  if (flags & O_NONBLOCK)
+    return true;
+  if (HANDLE_EINTR(::fcntl(fd, F_SETFL, flags | O_NONBLOCK)) == -1) {
+    return false;
+  }
+  return true;
+}
+
 bool PathExists(const FilePath& path) {
   return ::access(path.value().c_str(), F_OK) == 0;
 }
